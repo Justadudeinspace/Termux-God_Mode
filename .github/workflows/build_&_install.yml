@@ -1,11 +1,12 @@
 # Presenting:
-# "Termux-God_Mode Terminal Emulator App - Debug Test Build"
+    
+# "Termux-God_Mode" 
 
+# Terminal Emulator App - Debug Test Build"
 
 # Build Description w/ Intend Target Device Model:
 
-# 'build_&_install.yml" GitHub workflow file for compile, create, amd install of "Termux-God_Mode" Terminal Emulator App /primary for: "Google Pixel 6 Pro - Raven - aarch/arm64 - Android 14 - API 34 - crDroid 10.8 - Custom Rom/Root Build - by: (github.com/Justadudeinspace) - (@JADIS)" - Contact: justadudeinspace4244@hotmail.com
-#
+# 'build_&_install.yml" GitHub workflow file for first concept to compile, create, amd install the "Termux-God_Mode" Terminal Emulator App /primary for: "Google Pixel 6 Pro - Raven - aarch/arm64 - Android 14 - API 34 - crDroid 10.8 - Custom Rom/Root Build - by: (github.com/Justadudeinspace) - (@JADIS)" - Contact: justadudeinspace4244@hotmail.com
 
 
 # Begin Workflow
@@ -103,6 +104,7 @@ jobs:
 
     # Run tests
     - name: Run Tests
-      run: ./gradlew test
+      run: ./gradlew test builds...
+      
+# End workflow
 
-builds...
