@@ -1,18 +1,28 @@
-# Presenting:
-    
-# "Termux-God_Mode" 
+>  Presenting First Workflow:
+>    
+>  "Termux-God_Mode" 
+> 
+>  Terminal Emulator App - Debug Test Build First Concepf"
+> 
+>  Build Description w/ Intend Target Device Model:
+> 
+>  'build_&_install.yml" GitHub workflow file for first concept to compile, create, amd install the "Termux-God_Mode" Terminal Emulator App /primary for: "Google Pixel 6 Pro - Raven - aarch/arm64 - Android 14 - API 34 - crDroid 10.8 - Custom Rom/Root Build - by: (github.com/Justadudeinspace) - (@JADIS)" - Contact: justadudeinspace4244@hotmail.com
+> 
+> 
 
-# Terminal Emulator App - Debug Test Build"
-
-# Build Description w/ Intend Target Device Model:
-
-# 'build_&_install.yml" GitHub workflow file for first concept to compile, create, amd install the "Termux-God_Mode" Terminal Emulator App /primary for: "Google Pixel 6 Pro - Raven - aarch/arm64 - Android 14 - API 34 - crDroid 10.8 - Custom Rom/Root Build - by: (github.com/Justadudeinspace) - (@JADIS)" - Contact: justadudeinspace4244@hotmail.com
+_______________
 
 
-# Begin Workflow
+> 
+>  Begin Workflow
+> 
 
+
+----
 name: Build and Install for Pixel 6 Pro
+----
 
+----
 on:
   push:
     branches:
@@ -20,17 +30,24 @@ on:
   pull_request:
     branches:
       - master
+----
 
+----
 jobs:
   build:
     runs-on: ubuntu-latest
+----
 
+----
     steps:
     # Checkout the main repository
     - name: Checkout Repository
       uses: actions/checkout@v2
+----
 
-    # Cache Gradle dependencies
+>  Cache Gradle dependencies
+
+----
     - name: Cache Gradle dependencies
       uses: actions/cache@v2
       with:
@@ -38,54 +55,81 @@ jobs:
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
         restore-keys: |
           ${{ runner.os }}-gradle-
+----
 
-    # Set up JDK for Android build
+>  Set up JDK for Android build
+
+----
     - name: Set up JDK
       uses: actions/setup-java@v1
       with:
         java-version: '11'
+----
 
-    # Set up Android SDK
+> Set up Android SDK
+
+----
     - name: Set up Android SDK
       uses: android-actions/setup-android@v2
       with:
         api-level: 34
         build-tools: 34.0.0
+----
 
-    # Clone additional repositories if needed
+>  Clone additional repositories if needed
+
+----
     - name: Clone Termux Plugins
       run: |
         git clone https://github.com/termux/termux-packages.git
         git clone https://github.com/termux/termux-plugins.git
+----
 
-    # Build Termux App
-    - name: Build Termux App
+>  Build Termux App
+
+----
+      - name: Build Termux App
       run: ./gradlew assembleDebug
+----
 
-    # Build Termux Plugins
+>  Build Termux Plugins
+
+----
     - name: Build Termux Plugins
       run: |
         cd termux-plugins
         ./build.sh
+----
 
-    # Update Package Libraries and Sources
+>  Update Package Libraries and Sources
+
+----
     - name: Update Package Libraries
       run: |
         cd termux-packages
         ./scripts/update-packages.sh
+----
 
-    # Install preinstalled packages
+>  Install preinstalled packages
+
+----
     - name: Install Preinstalled Packages
       run: |
         sudo apt-get update
         sudo apt-get install -y zsh oh-my-zsh z-shell git wget nodejs rust ruby fish cli-tools magisk su
+----
 
-    # Preinstall the full list of packages
+>  Preinstall the full list of packages
+
+----
     - name: Preinstall Full List of Packages
       run: |
         sudo apt-get install -y $(cat full-package-list.txt)
+----
 
-    # Verify Installation
+>  Verify Installation
+   
+----
     - name: Verify Installation
       run: |
         adb devices
@@ -94,17 +138,29 @@ jobs:
         adb push build/outputs/apk/debug/app-debug.apk /data/local/tmp/termux/
         adb shell 'pm install -r /data/local/tmp/termux/app-debug.apk'
         adb shell 'pm list packages | grep com.termux'
+----
 
-    # Save build outputs as artifacts
+>  Save build outputs as artifacts
+
+----
     - name: Upload APK
       uses: actions/upload-artifact@v2
       with:
         name: termux-app-debug-apk
         path: build/outputs/apk/debug/app-debug.apk
+----
 
-    # Run tests
+>  Run tests
+
+----
     - name: Run Tests
       run: ./gradlew test builds...
-      
-# End workflow
+ ----
+     
+>
+>   End workflow
+> 
+
+_____________
+
 
