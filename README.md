@@ -1,4 +1,14 @@
-# Termux application
+# "Termux-God_Mode"
+
+- <sup>Full details with description and intent of **"Termux-God_Mode"** purpose coming soon</sup>
+
+- <sub>**"Termux-God_Mode"** is not an affiliated product with the official & original creators & development of the "Termux" terminal emulator</sub>
+
+# Originsl Termux application Info & Docs
+
+**Original Termux App Source Can Be Found At:**
+
+[termux / termux-app](https://github.com/termux/termux-app)
 
 [![Build status](https://github.com/termux/termux-app/workflows/Build/badge.svg)](https://github.com/termux/termux-app/actions)
 [![Testing status](https://github.com/termux/termux-app/workflows/Unit%20tests/badge.svg)](https://github.com/termux/termux-app/actions)
